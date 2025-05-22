@@ -12,13 +12,11 @@
             margin: 0;
             padding: 0;
         }
-
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
-
         .header {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
@@ -27,7 +25,6 @@
             border-radius: 15px;
             margin-bottom: 30px;
         }
-
         .case-description {
             background: white;
             padding: 20px;
@@ -35,40 +32,35 @@
             margin-bottom: 30px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-
         .mcq-section {
             background: #f8f9fa;
             padding: 30px;
             border-radius: 15px;
         }
-
         .mcq-title {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 20px;
             font-weight: bold;
         }
-
         .mcq-container {
             background: white;
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
         }
-
         .mcq-question {
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 15px;
         }
-
         .mcq-options {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
         .mcq-option {
             background: #f0f0f0;
             padding: 12px 18px;
@@ -77,31 +69,36 @@
             border: 2px solid transparent;
             transition: 0.3s;
         }
-
         .mcq-option:hover {
             background: #e0f3ff;
             border-color: #3498db;
         }
-
         .mcq-option.correct {
             background: #d5f4e6;
             border-color: #27ae60;
         }
-
         .mcq-option.incorrect {
             background: #fde8e8;
             border-color: #e74c3c;
         }
-
-        .mcq-submit {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
+        .hint-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ffc107;
             border: none;
-            border-radius: 10px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
+        }
+        .hint-text {
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff9c4;
+            border-left: 4px solid #fbc02d;
+            display: none;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -126,61 +123,168 @@
         </div>
 
         <div class="mcq-section">
-            <h2 class="mcq-title">📝 Multiple Choice Questions (10)</h2>
-
-            <!-- Only 4 shown here, will expand next if needed -->
-            <div class="mcq-container">
-                <div class="mcq-question">1. What is the gross profit of Doha Food Store?</div>
-                <div class="mcq-options">
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">A) US$ 137,100</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">B) US$ 119,300</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) US$ 256,400</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) US$ 40,800</div>
-                </div>
-            </div>
-
-            <div class="mcq-container">
-                <div class="mcq-question">2. Which of the following represents the cost of sales?</div>
-                <div class="mcq-options">
-                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">A) US$ 137,100</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">B) US$ 77,900</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) US$ 600</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) US$ 256,400</div>
-                </div>
-            </div>
-
-            <div class="mcq-container">
-                <div class="mcq-question">3. How is gross profit calculated?</div>
-                <div class="mcq-options">
-                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">A) Revenue - Cost of Sales</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">B) Operating Profit - Expenses</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) Revenue + Expenses</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) Revenue - Expenses</div>
-                </div>
-            </div>
-
-            <div class="mcq-container">
-                <div class="mcq-question">4. What is the net profit (profit for the year) of the business?</div>
-                <div class="mcq-options">
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">A) US$ 41,400</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">B) US$ 40,800</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) US$ 600</div>
-                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) US$ 119,300</div>
-                </div>
-            </div>
-
-            <!-- 5-10 to be appended similarly... -->
+            <h2 class="mcq-title">📝 Multiple Choice Questions (19)</h2>
+            <div id="mcq-list"></div>
         </div>
     </div>
 
     <script>
-        function markAnswer(element, correctness) {
-            const siblings = element.parentElement.children;
-            for (let i = 0; i < siblings.length; i++) {
-                siblings[i].classList.remove('correct', 'incorrect');
+        const questions = [
+            {
+                q: "What is the gross profit of Doha Food Store?",
+                a: "B",
+                hint: "Gross Profit = Revenue - Cost of Sales",
+                options: {
+                    A: "US$ 137,100",
+                    B: "US$ 119,300",
+                    C: "US$ 256,400",
+                    D: "US$ 40,800"
+                }
+            },
+            {
+                q: "Which of the following represents the cost of sales?",
+                a: "A",
+                hint: "It's the direct cost of goods sold.",
+                options: {
+                    A: "US$ 137,100",
+                    B: "US$ 77,900",
+                    C: "US$ 600",
+                    D: "US$ 256,400"
+                }
+            },
+            {
+                q: "How is gross profit calculated?",
+                a: "A",
+                hint: "Gross profit = Revenue - Cost of Sales",
+                options: {
+                    A: "Revenue - Cost of Sales",
+                    B: "Operating Profit - Expenses",
+                    C: "Revenue + Expenses",
+                    D: "Revenue - Expenses"
+                }
+            },
+            {
+                q: "What is the net profit (profit for the year)?",
+                a: "B",
+                hint: "Net profit = Operating Profit - Finance Costs",
+                options: {
+                    A: "US$ 41,400",
+                    B: "US$ 40,800",
+                    C: "US$ 600",
+                    D: "US$ 119,300"
+                }
+            },
+                        {
+                q: "What is the total revenue of the Doha Food Store?",
+                a: "C",
+                hint: "Look at the top value listed under the income statement.",
+                options: {
+                    A: "US$ 137,100",
+                    B: "US$ 40,800",
+                    C: "US$ 256,400",
+                    D: "US$ 77,900"
+                }
+            },
+            {
+                q: "Which item is subtracted from operating profit to find the net profit?",
+                a: "B",
+                hint: "It's a type of cost related to borrowed money.",
+                options: {
+                    A: "Revenue",
+                    B: "Finance costs",
+                    C: "Gross profit",
+                    D: "Cost of sales"
+                }
+            },
+            {
+                q: "What does 'expenses' most likely include?",
+                a: "A",
+                hint: "Think about the regular payments a store must make.",
+                options: {
+                    A: "Rent, utilities, salaries",
+                    B: "Total revenue",
+                    C: "Loans received",
+                    D: "Opening inventory"
+                }
+            },
+            {
+                q: "What is the operating profit of the business?",
+                a: "D",
+                hint: "Operating profit = Gross profit - Expenses",
+                options: {
+                    A: "US$ 77,900",
+                    B: "US$ 137,100",
+                    C: "US$ 600",
+                    D: "US$ 41,400"
+                }
+            },
+            {
+                q: "Which figure is deducted last to calculate the final profit?",
+                a: "C",
+                hint: "It's smaller than expenses but still necessary.",
+                options: {
+                    A: "Cost of sales",
+                    B: "Gross profit",
+                    C: "Finance costs",
+                    D: "Revenue"
+                }
+            },
+            {
+                q: "What is the significance of the statement of comprehensive income?",
+                a: "A",
+                hint: "Think about how a business measures performance.",
+                options: {
+                    A: "Shows financial performance over a period",
+                    B: "Lists all physical assets owned",
+                    C: "Details employee satisfaction",
+                    D: "Shows customer reviews"
+                }
+            },
+            // Add 9 more MCQs with q, a, hint, options
+        ];
+
+        const mcqList = document.getElementById("mcq-list");
+
+        questions.forEach((item, idx) => {
+            const container = document.createElement("div");
+            container.className = "mcq-container";
+
+            const question = document.createElement("div");
+            question.className = "mcq-question";
+            question.textContent = `${idx + 1}. ${item.q}`;
+
+            const hintBtn = document.createElement("button");
+            hintBtn.className = "hint-btn";
+            hintBtn.textContent = "Hint";
+            hintBtn.onclick = () => {
+                hintText.style.display = hintText.style.display === "block" ? "none" : "block";
+            };
+
+            const hintText = document.createElement("div");
+            hintText.className = "hint-text";
+            hintText.textContent = item.hint;
+
+            const options = document.createElement("div");
+            options.className = "mcq-options";
+
+            for (let key in item.options) {
+                const opt = document.createElement("div");
+                opt.className = "mcq-option";
+                opt.textContent = `${key}) ${item.options[key]}`;
+                opt.onclick = () => {
+                    [...options.children].forEach(child => child.classList.remove("correct", "incorrect"));
+                    opt.classList.add(key === item.a ? "correct" : "incorrect");
+                };
+                options.appendChild(opt);
             }
-            element.classList.add(correctness);
-        }
+
+            container.appendChild(question);
+            container.appendChild(hintBtn);
+            container.appendChild(options);
+            container.appendChild(hintText);
+
+            mcqList.appendChild(container);
+        });
     </script>
 </body>
 </html>
