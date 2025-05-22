@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statement of Comprehensive Income - Case Study MCQ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .case-description {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .mcq-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .mcq-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .mcq-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .mcq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mcq-option {
+            background: #f0f0f0;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .mcq-option:hover {
+            background: #e0f3ff;
+            border-color: #3498db;
+        }
+
+        .mcq-option.correct {
+            background: #d5f4e6;
+            border-color: #27ae60;
+        }
+
+        .mcq-option.incorrect {
+            background: #fde8e8;
+            border-color: #e74c3c;
+        }
+
+        .mcq-submit {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Case Study: Doha Food Store</h1>
+            <p>Statement of Comprehensive Income</p>
+        </div>
+
+        <div class="case-description">
+            <p>The Doha Food Store sells a wide range of groceries. It is located in a suburb of Doha in Qatar and serves local residents. Musab Assad and his family own the business, and his three sons are employed in the store. Below is the financial data for the year ending 31 May 2015:</p>
+            <ul>
+                <li><strong>Revenue:</strong> US$ 256,400</li>
+                <li><strong>Cost of sales:</strong> US$ 137,100</li>
+                <li><strong>Gross profit:</strong> US$ 119,300</li>
+                <li><strong>Expenses:</strong> US$ 77,900</li>
+                <li><strong>Operating profit:</strong> US$ 41,400</li>
+                <li><strong>Finance costs:</strong> US$ 600</li>
+                <li><strong>Profit for the year:</strong> US$ 40,800</li>
+            </ul>
+        </div>
+
+        <div class="mcq-section">
+            <h2 class="mcq-title">📝 Multiple Choice Questions (10)</h2>
+
+            <!-- Only 4 shown here, will expand next if needed -->
+            <div class="mcq-container">
+                <div class="mcq-question">1. What is the gross profit of Doha Food Store?</div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">A) US$ 137,100</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">B) US$ 119,300</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) US$ 256,400</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) US$ 40,800</div>
+                </div>
+            </div>
+
+            <div class="mcq-container">
+                <div class="mcq-question">2. Which of the following represents the cost of sales?</div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">A) US$ 137,100</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">B) US$ 77,900</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) US$ 600</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) US$ 256,400</div>
+                </div>
+            </div>
+
+            <div class="mcq-container">
+                <div class="mcq-question">3. How is gross profit calculated?</div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">A) Revenue - Cost of Sales</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">B) Operating Profit - Expenses</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) Revenue + Expenses</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) Revenue - Expenses</div>
+                </div>
+            </div>
+
+            <div class="mcq-container">
+                <div class="mcq-question">4. What is the net profit (profit for the year) of the business?</div>
+                <div class="mcq-options">
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">A) US$ 41,400</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'correct')">B) US$ 40,800</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">C) US$ 600</div>
+                    <div class="mcq-option" onclick="markAnswer(this, 'incorrect')">D) US$ 119,300</div>
+                </div>
+            </div>
+
+            <!-- 5-10 to be appended similarly... -->
+        </div>
+    </div>
+
+    <script>
+        function markAnswer(element, correctness) {
+            const siblings = element.parentElement.children;
+            for (let i = 0; i < siblings.length; i++) {
+                siblings[i].classList.remove('correct', 'incorrect');
+            }
+            element.classList.add(correctness);
+        }
+    </script>
+</body>
+</html>
